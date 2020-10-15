@@ -31,6 +31,7 @@ while 1 < 2:
             print('You guessed it!')
             print(hand1)
             print(hand2)
+            break
         else:
             index = -1
 
@@ -45,9 +46,12 @@ while 1 < 2:
     counts = Counter(hand1)    
     print(counts)
     for ele in counts:
-        if (counts[ele] == 4):
+        if (counts[ele] == 2):
             print("Theres 4 of this card:")
             print(ele)
+            # Remove element from hand and increment players score by 1.
+            player1_pts += 1
+            print("Player 1's score is: " + str(player1_pts))
 
     current_player = 'Player 2'
     # if myItem in list:
