@@ -1,7 +1,9 @@
 from collections import Counter
 
 import Deck
+import Utilities
 deck = Deck.Deck()
+utilities = Utilities.Utilities()
 
 deck_list = deck.create_deck()
 
@@ -25,35 +27,13 @@ while 1 < 2:
     p1_guess = int(input("Guess a card: "))
     
     # Player 1 actions:
-    for index, card in enumerate(hand2):
-        if card.card_number == p1_guess:
-            hand1.append(hand2.pop(index))
-            print('You guessed it!')
-            print(hand1)
-            print(hand2)
-            break
-        else:
-            index = -1
-
-    if index == -1:
-        print('Go Fish!')
-        # Draw card if it doesn't match
-        hand1, deck_list = deck.draw_cards(deck_list, hand1, 1)
-        print(current_player + "'s hand is: ")
-        print(hand1)
+    guessing_hand, target_hand, index = utilities.is_card_in_hand(hand1, hand2, p1_guess, deck_list, deck, current_player)
 
     # Check if there's 4 in the hand
     counts = Counter(hand1)    
     print(counts)
-    for ele in counts:
-        if (counts[ele] == 4):
-            print("Theres 4 of this card:")
-            print(ele)
-            # Remove element from hand and increment players score by 1.            
-            hand1.remove(ele)
-            player1_pts += 1
-            print("Player 1's score is: " + str(player1_pts))
-            
+
+    hand1, player1_pts = utilities.scoring_cycle(counts, hand1, "Player1's score: ", player1_pts)
 
     current_player = 'Player 2'
 
