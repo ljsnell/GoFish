@@ -46,18 +46,16 @@ while 1 < 2:
     counts = Counter(hand1)    
     print(counts)
     for ele in counts:
-        if (counts[ele] == 2):
+        if (counts[ele] == 4):
             print("Theres 4 of this card:")
             print(ele)
-            # Remove element from hand and increment players score by 1.
+            # Remove element from hand and increment players score by 1.            
+            hand1.remove(ele)
             player1_pts += 1
             print("Player 1's score is: " + str(player1_pts))
+            
 
     current_player = 'Player 2'
-    # if myItem in list:
-    # https://stackoverflow.com/questions/9371114/check-if-list-of-objects-contain-an-object-with-a-certain-attribute-value
-
-    
 
     # P2 guess card
 
