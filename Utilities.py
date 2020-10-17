@@ -1,3 +1,4 @@
+from collections import Counter
 
 class Utilities:
 
@@ -8,7 +9,7 @@ class Utilities:
                 print('You guessed it!')
                 print(guessing_hand)
                 print(target_hand)
-                break
+                break            
             else:
                 index = -1
         if index == -1:
@@ -20,7 +21,8 @@ class Utilities:
 
         return guessing_hand, target_hand, deck_list   
 
-    def scoring_cycle(self, counts, hand, player_name, player_pts):
+    def scoring_cycle(self, hand, player_name, player_pts):
+        counts = Counter(hand)        
         for ele in counts:
             if (counts[ele] == 4):
                 print("Theres 4 of this card:")
