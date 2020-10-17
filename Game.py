@@ -16,8 +16,7 @@ player2_pts = 0
 hand1, deck_list = deck.draw_cards(deck_list, hand1, hand_size)
 hand2, deck_list = deck.draw_cards(deck_list, hand2, hand_size)
 
-print(hand1)
-print(hand2)
+utilities.print_hands(hand1, hand2)
 
 # Check if either player drew 4 of a kind right away.
 hand1, player1_pts = utilities.scoring_cycle(hand1, "Player1's score: ", player1_pts)
@@ -26,7 +25,7 @@ hand2, player2_pts = utilities.scoring_cycle(hand2, "Player2's score: ", player2
 while 1 < 2:
     # P1 guess card
     current_player = 'Player 1'
-    print(current_player)
+    print(current_player + ':')
     p1_guess = int(input("Guess a card Player 1: "))
     
     # Player 1 actions:
@@ -35,9 +34,11 @@ while 1 < 2:
     # Check if there's 4 in the hand
     hand1, player1_pts = utilities.scoring_cycle(hand1, "Player1's score: ", player1_pts)
 
+    utilities.print_hands(hand1, hand2)
+
     # Repeat for next player
     current_player = 'Player 2'
-    print(current_player)
+    print(current_player + ':')
     p2_guess = int(input("Guess a card Player 2: "))
     
     # Player 2 actions:
@@ -45,3 +46,5 @@ while 1 < 2:
 
     # Check if there's 4 in the hand
     hand2, player2_pts = utilities.scoring_cycle(hand2, "Player2's score: ", player2_pts)
+
+    utilities.print_hands(hand1, hand2)

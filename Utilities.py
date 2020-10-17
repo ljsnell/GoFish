@@ -4,22 +4,16 @@ class Utilities:
 
     def is_card_in_hand(self, guessing_hand, target_hand, guess, deck_list, deck, current_player):
         indices = [i for i, x in enumerate(target_hand) if x.card_number == guess]
-        print('indices!')
-        print(indices)
         
         # Draw card if guess doesn't match
         if not indices:
             print('Go Fish!')
-            hand, deck_list = deck.draw_cards(deck_list, guessing_hand, 1)
-            print(current_player + "'s hand is: ")
-            print(hand)
+            hand, deck_list = deck.draw_cards(deck_list, guessing_hand, 1)            
         else:
             # Remove all matching cards from hand
             for index in sorted(indices, reverse=True):
                 guessing_hand.append(target_hand.pop(index))            
                 print('You guessed it!')
-                print(guessing_hand)
-                print(target_hand)
 
         return guessing_hand, target_hand, deck_list   
 
@@ -35,3 +29,12 @@ class Utilities:
                 print(player_name + str(player_pts))
 
         return hand, player_pts
+
+    
+    def print_hands(self, hand1, hand2):
+        print("Player 1:")
+        hand1.sort(key=lambda x: x.card_number)
+        print(hand1)
+        print("Player 2:")
+        hand2.sort(key=lambda x: x.card_number)
+        print(hand2)
