@@ -3,21 +3,23 @@ from collections import Counter
 class Utilities:
 
     def is_card_in_hand(self, guessing_hand, target_hand, guess, deck_list, deck, current_player):
-        for index, card in enumerate(target_hand):
-            if card.card_number == guess:
-                guessing_hand.append(target_hand.pop(index))
-                print('You guessed it!')
-                print(guessing_hand)
-                print(target_hand)
-                break            
-            else:
-                index = -1
-        if index == -1:
+        indices = [i for i, x in enumerate(target_hand) if x.card_number == guess]
+        print('indices!')
+        print(indices)
+        
+        # Draw card if guess doesn't match
+        if not indices:
             print('Go Fish!')
-            # Draw card if it doesn't match
             hand, deck_list = deck.draw_cards(deck_list, guessing_hand, 1)
             print(current_player + "'s hand is: ")
             print(hand)
+        else:
+            # Remove all matching cards from hand
+            for index in sorted(indices, reverse=True):
+                guessing_hand.append(target_hand.pop(index))            
+                print('You guessed it!')
+                print(guessing_hand)
+                print(target_hand)
 
         return guessing_hand, target_hand, deck_list   
 

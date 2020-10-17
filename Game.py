@@ -41,7 +41,7 @@ while 1 < 2:
     p2_guess = int(input("Guess a card Player 2: "))
     
     # Player 2 actions:
-    hand1, hand2, deck_list = utilities.is_card_in_hand(hand2, hand1, p2_guess, deck_list, deck, current_player)
+    hand2, hand1, deck_list = utilities.is_card_in_hand(hand2, hand1, p2_guess, deck_list, deck, current_player)
 
     # Check if there's 4 in the hand
     hand2, player2_pts = utilities.scoring_cycle(hand2, "Player2's score: ", player2_pts)
