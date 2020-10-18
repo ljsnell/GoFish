@@ -23,28 +23,30 @@ hand1, player1_pts = utilities.scoring_cycle(hand1, "Player1's score: ", player1
 hand2, player2_pts = utilities.scoring_cycle(hand2, "Player2's score: ", player2_pts)
 
 while 1 < 2:
-    # P1 guess card
-    current_player = 'Player 1'
-    print(current_player + ':')
-    p1_guess = int(input("Guess a card Player 1: "))
-    
-    # Player 1 actions:
-    hand1, hand2, deck_list = utilities.is_card_in_hand(hand1, hand2, p1_guess, deck_list, deck, current_player)
+    correct_guess = True
+    while correct_guess == True:
+        # P1 guess card
+        current_player = 'Player 1'
+        p1_guess = int(input("Guess a card Player 1: "))
 
-    # Check if there's 4 in the hand
-    hand1, player1_pts = utilities.scoring_cycle(hand1, "Player1's score: ", player1_pts)
+        # Player 1 actions:
+        hand1, hand2, deck_list, correct_guess = utilities.is_card_in_hand(hand1, hand2, p1_guess, deck_list, deck, current_player, correct_guess)
 
-    utilities.print_hands(hand1, hand2)
+        # Check if there's 4 in the hand
+        hand1, player1_pts = utilities.scoring_cycle(hand1, "Player1's score: ", player1_pts)
 
-    # Repeat for next player
-    current_player = 'Player 2'
-    print(current_player + ':')
-    p2_guess = int(input("Guess a card Player 2: "))
-    
-    # Player 2 actions:
-    hand2, hand1, deck_list = utilities.is_card_in_hand(hand2, hand1, p2_guess, deck_list, deck, current_player)
+        utilities.print_hands(hand1, hand2)
 
-    # Check if there's 4 in the hand
-    hand2, player2_pts = utilities.scoring_cycle(hand2, "Player2's score: ", player2_pts)
+    correct_guess = True
+    while correct_guess == True:
+        # Repeat for next player
+        current_player = 'Player 2'
+        p2_guess = int(input("Guess a card Player 2: "))
 
-    utilities.print_hands(hand1, hand2)
+        # Player 2 actions:
+        hand2, hand1, deck_list, correct_guess = utilities.is_card_in_hand(hand2, hand1, p2_guess, deck_list, deck, current_player, correct_guess)
+
+        # Check if there's 4 in the hand
+        hand2, player2_pts = utilities.scoring_cycle(hand2, "Player2's score: ", player2_pts)
+
+        utilities.print_hands(hand1, hand2)
