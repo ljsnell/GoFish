@@ -15,6 +15,9 @@ class Deck:
     def draw_cards(self, deck, hand, card_number):
 
         for i in range(card_number):
-            hand.append(deck.pop(0))
+            if(len(deck) == 0):
+                print("Game's over!")
+            else:
+                hand.append(deck.pop(0))
 
         return hand, deck
