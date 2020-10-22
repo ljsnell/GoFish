@@ -31,6 +31,7 @@ while 1 < 2:
     print('Saving game state!')
     current_player = 'Player 1'
     mongo_client.save_game(hand1, hand2, player1_pts, player2_pts, deck_list, game_id, current_player)
+    mongo_client.retrieve_game(0)
     while correct_guess == True:
         # P1 guess card
         current_player = 'Player 1'

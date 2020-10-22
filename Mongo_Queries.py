@@ -23,3 +23,9 @@ class MongoClient:
         x = self.game_col.insert_one(game_state)
         print('inserted x')
         print(x)
+
+    def retrieve_game(self, game_id): # Can add passcode next
+        # https://www.w3schools.com/python/python_mongodb_find.asp
+        game_state = self.game_col.find_one()
+        print(game_state)
+        print(pickle.loads(game_state['p1_hand']))
