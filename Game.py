@@ -1,7 +1,9 @@
 import Deck
 import Utilities
+import Mongo_Queries
 deck = Deck.Deck()
 utilities = Utilities.Utilities()
+mongo_client = Mongo_Queries.MongoClient()
 
 deck_list = deck.create_deck()
 
@@ -22,8 +24,13 @@ utilities.print_hands(hand1, hand2)
 hand1, player1_pts = utilities.scoring_cycle(hand1, "Player1's score: ", player1_pts)
 hand2, player2_pts = utilities.scoring_cycle(hand2, "Player2's score: ", player2_pts)
 
-while 1 < 2:    
+game_id = 0
+
+while 1 < 2:
     correct_guess = True
+    print('Saving game state!')
+    current_player = 'Player 1'
+    mongo_client.save_game(hand1, hand2, player1_pts, player2_pts, deck_list, game_id, current_player)
     while correct_guess == True:
         # P1 guess card
         current_player = 'Player 1'
@@ -50,3 +57,4 @@ while 1 < 2:
         hand2, player2_pts = utilities.scoring_cycle(hand2, "Player2's score: ", player2_pts)
 
         utilities.print_hands(hand1, hand2)
+        

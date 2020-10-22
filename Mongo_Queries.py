@@ -1,17 +1,25 @@
 import pymongo
+import random
+import string
+import pickle
 
 class MongoClient:
     client = pymongo.MongoClient("mongodb://localhost:27017/")
 
     mydb = client["game_state"]
-    mycol = mydb["game"]
+    game_col = mydb["game"]
     
-    def save_game(self, p1_hand, p2_hand, p1_pts, p2_pts, deck, game_id, current_player)
+    def save_game(self, p1_hand, p2_hand, p1_pts, p2_pts, deck, game_id, current_player):
+        # Encode classes?
+        pickle_hand1 = pickle.dumps(p1_hand)
+        pickle_hand2 = pickle.dumps(p2_hand)
+        pickle_deck = pickle.dumps(deck)
+
         random_password = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
-        game_state = { "p1_hand": p1_hand, "p2_hand": p2_hand, "player1_pts": p1_pts, 
-            "player2_pts": p2_pts, "deck": deck, "game_id": game_id, "current_player": current_player,
+        game_state = { "p1_hand": pickle_hand1, "p2_hand": pickle_hand2, "player1_pts": p1_pts, 
+            "player2_pts": p2_pts, "deck": pickle_deck, "game_id": game_id, "current_player": current_player,
             "pass_code": random_password}
 
-        x = mycol.insert_one(game_state)
+        x = self.game_col.insert_one(game_state)
         print('inserted x')
         print(x)
