@@ -22,12 +22,12 @@ utilities.print_hands(hand1, hand2)
 hand1, player1_pts = utilities.scoring_cycle(hand1, "Player1's score: ", player1_pts)
 hand2, player2_pts = utilities.scoring_cycle(hand2, "Player2's score: ", player2_pts)
 
-while 1 < 2:
+while 1 < 2:    
     correct_guess = True
     while correct_guess == True:
         # P1 guess card
         current_player = 'Player 1'
-        p1_guess = int(input("Guess a card Player 1: "))
+        p1_guess = int(input("Guess a card Player 1: "))      
 
         # Player 1 actions:
         hand1, hand2, deck_list, correct_guess = utilities.is_card_in_hand(hand1, hand2, p1_guess, deck_list, deck, current_player, correct_guess)
