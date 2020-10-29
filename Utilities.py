@@ -1,3 +1,4 @@
+import os
 from collections import Counter
 
 class Utilities:
@@ -36,10 +37,12 @@ class Utilities:
         return hand, player_pts
 
     
-    def print_hands(self, hand1, hand2):
-        print("Player 1:")
-        hand1.sort(key=lambda x: x.card_number)
-        print(hand1)
-        print("Player 2:")
-        hand2.sort(key=lambda x: x.card_number)
-        print(hand2)
+    def print_hand(self, hand, player_name):
+        print(player_name + ":")
+        hand.sort(key=lambda x: x.card_number)
+        print(hand)        
+
+    def end_player_cycle(self):
+        input("Press enter when ready...")
+        os.system('clear')
+        input("Please pass the game to the next player...")
